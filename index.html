@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>震展示中</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #f0e6dc, #d8cbc4);
+      color: #4a3c31;
+      font-family: 'Noto Serif TC', serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #fff8f0;
+      border-bottom: 2px solid #c6b8af;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+
+    .social-icons i,
+    .nav-buttons button {
+      margin: 0 8px;
+      cursor: pointer;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons button {
+      background: #c6b8af;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(198,184,175,0.5);
+      margin: 5px;
+    }
+
+    .nav-buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(198,184,175,0.7);
+    }
+
+    .center-content {
+      text-align: center;
+      margin: 100px 20px 0 20px;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .center-content h2 {
+      color: #7d6f63;
+      margin-bottom: 20px;
+    }
+
+    .center-content h1 {
+      font-size: 8vw;
+      margin-bottom: 30px;
+      color: #4a3c31;
+      text-shadow: 0 0 10px rgba(198,184,175,0.6);
+    }
+
+    .center-content button {
+      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      background: #c6b8af;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 15px rgba(198,184,175,0.4);
+    }
+
+    .center-content button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(198,184,175,0.6);
+    }
+
+    .reveal-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 1s ease;
+    }
+
+    .reveal-wrapper.show {
+      max-height: 1000px;
+    }
+
+    .reveal-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 40px;
+      margin: 60px 20px 0 20px;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 1s ease 0.8s, transform 1s ease 0.8s;
+    }
+
+    .reveal-container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-item {
+      flex: 1 1 280px;
+      max-width: 320px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(150, 130, 120, 0.4);
+      background: #fffaf6;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .reveal-item.float-show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .reveal-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-section {
+      margin: 100px auto;
+      max-width: 95%;
+      padding: 20px;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .video-section h2 {
+      color: #7d6f63;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px rgba(198,184,175,0.5);
+    }
+
+    .video-section iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 45vw;
+      max-height: 450px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(198,184,175,0.4);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="social-icons">
+      <i>🧵</i>
+      <i>🪡</i>
+      <i>🧶</i>
+      <i>👗</i>
+    </div>
+    <div style="font-weight:bold; font-size:18px">紡織創意坊</div>
+    <div class="nav-buttons">
+      <button>作品集</button>
+      <button>設計室</button>
+      <button>聯絡我們</button>
+    </div>
+  </header>
+
+  <div class="center-content">
+    <h2>讓震訴說您的品牌故事</h2>
+    <h1>紡織設計展示</h1>
+    <button onclick="showReveal()">啟動展示</button>
+  </div>
+
+  <div class="reveal-wrapper" id="revealWrapper">
+    <div class="reveal-container" id="revealSection">
+      <div class="reveal-item">
+        <img src="fabric1.jpg" alt="布料樣式 1">
+      </div>
+      <div class="reveal-item">
+        <img src="fabric2.jpg" alt="布料樣式 2">
+      </div>
+      <div class="reveal-item">
+        <img src="fabric3.jpg" alt="布料樣式 3">
+      </div>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <h2>展示影片</h2>
+    <iframe src="https://www.youtube.com/embed/VlKxFIcj_kY?rel=0" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function showReveal() {
+      const wrapper = document.getElementById('revealWrapper');
+      const section = document.getElementById('revealSection');
+      if (!wrapper.classList.contains('show')) {
+        wrapper.style.maxHeight = 'none';
+        const fullHeight = wrapper.scrollHeight + 'px';
+        wrapper.style.maxHeight = '0px';
+        void wrapper.offsetHeight;
+        wrapper.style.maxHeight = fullHeight;
+        wrapper.classList.add('show');
+        setTimeout(() => {
+          section.classList.add('show');
+        }, 100);
+        wrapper.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('float-show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    document.querySelectorAll('.reveal-item').forEach(item => {
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>
