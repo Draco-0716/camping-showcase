@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>露營風格展示 Touch UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b3c2f;
+      --accent: #7c9c66;
+      --font-color: #f5f5f5;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('camp-background-dark.jpg') center center/cover no-repeat fixed;
+      color: var(--font-color);
+      font-family: 'Noto Serif TC', serif;
+      overflow-x: hidden;
+      font-size: 2.5vw;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4vw;
+      background: rgba(0, 0, 0, 0.6);
+      border-bottom: 0.5vw solid #7c9c66;
+      box-shadow: 0 1vw 2vw rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-icons i,
+    .nav-buttons button {
+      margin: 0 1vw;
+      cursor: pointer;
+      font-size: 3vw;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 2vw;
+      padding: 1vw 3vw;
+      font-weight: bold;
+      font-size: 2.5vw;
+      box-shadow: 0 0 1vw rgba(124,156,102,0.5);
+    }
+
+    .nav-buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 2vw rgba(124,156,102,0.7);
+    }
+
+    .center-content {
+      text-align: center;
+      margin: 20vw 5vw 0 5vw;
+      animation: fadeIn 1.5s ease-in;
+      position: relative;
+      z-index: 1;
+    }
+
+    .center-content h1 {
+      font-size: 8vw;
+      color: var(--primary);
+      text-shadow: 0 0 1vw rgba(124,156,102,0.6);
+    }
+
+    .center-content h2 {
+      color: #f0f0f0;
+      margin-bottom: 4vw;
+    }
+
+    .center-content button {
+      font-size: 3vw;
+      padding: 2vw 5vw;
+      border-radius: 5vw;
+      border: none;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 1vw rgba(124,156,102,0.4);
+    }
+
+    .reveal-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 1s ease;
+    }
+
+    .reveal-wrapper.show {
+      max-height: 3000px;
+    }
+
+    .reveal-intro {
+      text-align: center;
+      margin-bottom: 4vw;
+      opacity: 0;
+      transform: translateY(5vw);
+      transition: opacity 1s ease 0.8s, transform 1s ease 0.8s;
+    }
+
+    .reveal-wrapper.show .reveal-intro {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-intro h2 {
+      font-size: 6vw;
+      margin-bottom: 2vw;
+      color: var(--primary);
+      text-shadow: 0 0 1vw rgba(124,156,102,0.6);
+    }
+
+    .reveal-intro p {
+      font-size: 3vw;
+      color: #4a5444;
+    }
+
+    .reveal-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4vw;
+      padding: 10vw 4vw;
+      opacity: 0;
+      transform: translateY(5vw);
+      transition: opacity 1s ease 0.8s, transform 1s ease 0.8s;
+    }
+
+    .reveal-container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-item {
+      flex: 1 1 40vw;
+      max-width: 45vw;
+      border-radius: 5vw;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 0 2vw rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(5vw);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .reveal-item.float-show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .reveal-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-section {
+      padding: 10vw 4vw;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .video-section iframe {
+      width: 100%;
+      max-width: 90vw;
+      height: 50vw;
+      border: none;
+      border-radius: 3vw;
+      box-shadow: 0 0 1.5vw rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-1vw); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="social-icons">
+      <i>🏕️</i>
+      <i>🔥</i>
+      <i>🌲</i>
+    </div>
+    <div style="font-weight:bold; font-size:3vw">露營探索趣</div>
+    <div class="nav-buttons">
+      <button>自然風景</button>
+      <button>裝備介紹</button>
+      <button>聯絡我們</button>
+    </div>
+  </header>
+
+  <div class="center-content">
+    <h2>探索自然・享受野趣</h2>
+    <h1>露營風格展示</h1>
+    <button onclick="toggleReveal()">啟動展示</button>
+  </div>
+
+  <div class="reveal-wrapper" id="revealWrapper">
+    <div class="reveal-intro">
+      <h2>風格展示牆</h2>
+      <p>多樣露營風格一次看，從溫馨帳篷到野性露營，發現最適合你的方式。</p>
+    </div>
+    <div class="reveal-container" id="revealSection">
+      <div class="reveal-item">
+        <img src="camp1.jpg" alt="露營景色 1">
+      </div>
+      <div class="reveal-item">
+        <img src="camp2.jpg" alt="露營景色 2">
+      </div>
+      <div class="reveal-item">
+        <img src="camp3.jpg" alt="露營景色 3">
+      </div>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <h2>野外活動影片</h2>
+    <iframe src="https://www.youtube.com/embed/VlKxFIcj_kY?rel=0" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function toggleReveal() {
+      const wrapper = document.getElementById('revealWrapper');
+      const section = document.getElementById('revealSection');
+      const isShowing = wrapper.classList.contains('show');
+
+      if (!isShowing) {
+        wrapper.style.maxHeight = 'none';
+        const fullHeight = wrapper.scrollHeight + 'px';
+        wrapper.style.maxHeight = '0px';
+        void wrapper.offsetHeight;
+        wrapper.style.maxHeight = fullHeight;
+        wrapper.classList.add('show');
+        setTimeout(() => {
+          section.classList.add('show');
+        }, 100);
+        wrapper.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        section.classList.remove('show');
+        wrapper.style.maxHeight = '0px';
+        wrapper.classList.remove('show');
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('float-show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    document.querySelectorAll('.reveal-item').forEach(item => {
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>
