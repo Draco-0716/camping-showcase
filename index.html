@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>森林露營設計展示</title>
+  <title>森林探險主題</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('forest-dark.jpg') no-repeat center center fixed;
+      background: url('forest-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #ffffff;
+      color: #2f4f2f;
       font-family: 'Noto Serif TC', serif;
       overflow-x: hidden;
-      font-size: 22px;
-      touch-action: manipulation;
       position: relative;
     }
 
-    #particles-js {
+    body::before {
+      content: "";
       position: fixed;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.6);
       z-index: -1;
     }
 
@@ -32,9 +31,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background: rgba(0,0,0,0.6);
-      border-bottom: 2px solid #8fbf9f;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background: #dceddb;
+      border-bottom: 2px solid #97c3a3;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .social-icons i,
@@ -44,38 +43,54 @@
     }
 
     .nav-buttons button {
-      background: #a4f0d3;
-      color: #003f2f;
+      background: #4f7f5c;
+      color: white;
       border: none;
-      border-radius: 30px;
-      padding: 16px 30px;
+      border-radius: 20px;
+      padding: 8px 20px;
       font-weight: bold;
-      font-size: 22px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+      box-shadow: 0 0 10px rgba(79,127,92,0.5);
     }
 
     .nav-buttons button:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(255,255,255,0.8);
+      box-shadow: 0 0 20px rgba(79,127,92,0.7);
     }
 
     .center-content {
       text-align: center;
       margin-top: 100px;
+      animation: fadeIn 1.5s ease-in;
     }
 
     .center-content h2 {
-      color: #d2ffe5;
+      color: #3d5f3a;
       margin-bottom: 20px;
-      font-size: 32px;
     }
 
     .center-content h1 {
-      font-size: 80px;
+      font-size: 60px;
       margin-bottom: 30px;
-      color: #00ffc8;
-      text-shadow: 0 0 20px #00ffc8;
+      color: #1f3b1f;
+      text-shadow: 0 0 10px rgba(100,150,100,0.4);
+    }
+
+    .center-content button {
+      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      background: #4f7f5c;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 15px rgba(79,127,92,0.4);
+    }
+
+    .center-content button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(79,127,92,0.6);
     }
 
     .reveal-wrapper {
@@ -112,13 +127,9 @@
       width: 280px;
       border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,255,204,0.5);
-      background: #001f1b;
+      box-shadow: 0 0 20px rgba(60, 100, 60, 0.4);
+      background: #f4fff4;
       animation: float 4s ease-in-out infinite;
-    }
-
-    .reveal-item a {
-      display: block;
     }
 
     .reveal-item img {
@@ -136,9 +147,9 @@
     }
 
     .video-section h2 {
-      color: #d2ffe5;
+      color: #2f4f2f;
       margin-bottom: 20px;
-      text-shadow: 0 0 8px rgba(0,255,204,0.8);
+      text-shadow: 0 0 8px rgba(120,180,120,0.4);
     }
 
     .video-section iframe {
@@ -146,7 +157,7 @@
       height: 450px;
       border: none;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,255,204,0.5);
+      box-shadow: 0 0 20px rgba(79,127,92,0.4);
     }
 
     @keyframes fadeIn {
@@ -165,88 +176,56 @@
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
-
   <header>
     <div class="social-icons">
       <i>🌲</i>
-      <i>🏕️</i>
-      <i>🔥</i>
-      <i>🪵</i>
+      <i>🍃</i>
+      <i>🦉</i>
+      <i>🌿</i>
     </div>
-    <div style="font-weight:bold; font-size:18px">森林露營設計坊</div>
+    <div style="font-weight:bold; font-size:18px">森林探險</div>
     <div class="nav-buttons">
-      <button>景點介紹</button>
-      <button>帳篷展示</button>
-      <button>聯絡我們</button>
+      <button>景點</button>
+      <button>活動</button>
+      <button>聯絡</button>
     </div>
   </header>
 
   <div class="center-content">
-    <h2>探索自然，享受森林中的靜謐</h2>
-    <h1 id="typewriter"></h1>
+    <h2>走進綠意盎然的森林世界</h2>
+    <h1>森林探險主題</h1>
+    <button onclick="showReveal()">開始探索</button>
   </div>
 
   <div class="reveal-wrapper" id="revealWrapper">
     <div class="reveal-container" id="revealSection">
       <div class="reveal-item">
-        <a href="camp1.jpg" class="glightbox" data-gallery="camp"><img src="camp1.jpg" alt="森林場景 1"></a>
+        <img src="forest1.jpg" alt="森林景觀 1">
       </div>
       <div class="reveal-item">
-        <a href="camp2.jpg" class="glightbox" data-gallery="camp"><img src="camp2.jpg" alt="帳篷展示 2"></a>
+        <img src="forest2.jpg" alt="森林景觀 2">
       </div>
       <div class="reveal-item">
-        <a href="camp3.jpg" class="glightbox" data-gallery="camp"><img src="camp3.jpg" alt="營火夜景 3"></a>
+        <img src="forest3.jpg" alt="森林景觀 3">
       </div>
     </div>
   </div>
 
   <div class="video-section">
-    <h2>露營體驗影片</h2>
+    <h2>森林紀錄影片</h2>
     <iframe src="https://www.youtube.com/embed/VlKxFIcj_kY?rel=0" allowfullscreen></iframe>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script>
-    // Reveal animation on scroll
-    document.addEventListener('DOMContentLoaded', () => {
+    function showReveal() {
       const wrapper = document.getElementById('revealWrapper');
       const section = document.getElementById('revealSection');
-
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            wrapper.classList.add('show');
-            section.classList.add('show');
-            observer.disconnect();
-          }
-        });
-      }, {
-        threshold: 0.3
-      });
-
-      observer.observe(wrapper);
-    });
-
-    // Lightbox
-    const lightbox = GLightbox({ selector: '.glightbox' });
-
-    // Background particles
-    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
-
-    // Typewriter effect
-    const text = "森林露營展示";
-    const target = document.getElementById("typewriter");
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        target.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(type, 150);
-      }
+      wrapper.classList.add('show');
+      setTimeout(() => {
+        section.classList.add('show');
+      }, 100);
+      wrapper.scrollIntoView({ behavior: 'smooth' });
     }
-    type();
   </script>
 </body>
 </html>
